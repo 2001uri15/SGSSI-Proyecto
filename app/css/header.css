@@ -1,0 +1,81 @@
+/* Resetear márgenes y padding del navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo general del header */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white; /* Color de fondo de la barra */
+    padding: 10px 20px;
+    height: 60px;
+    border-bottom: 2px solid white;
+}
+
+/* Estilo del logo */
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+/* Estilo de los links de navegación */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: black; /* Color del texto */
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a i {
+    margin-right: 5px; /* Espacio entre el icono y el texto */
+}
+
+.nav-links a:hover {
+    color: #ffc107; /* Color al pasar el ratón */
+}
+
+/* Estilo del perfil */
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-icon {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.profile-name {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Estilo de la notificación */
+.badge {
+    background-color: red;
+    color: black;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    margin-left: 5px;
+}

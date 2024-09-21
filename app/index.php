@@ -1,29 +1,27 @@
 <?php
-  echo '<h1>Yeah, it works!<h1>';
   // phpinfo();
-  $hostname = "db";
-  $username = "admin";
-  $password = "test";
-  $db = "database";
+  require_once 'plantillas/header.php'; // Incluimos el header
 
-  $conn = mysqli_connect($hostname,$username,$password,$db);
-  if ($conn->connect_error) {
-    die("Database connection failed: " . $conn->connect_error);
-  }
+  // Estructura para obtener la información de la BD
+  // $query = mysqli_query($conn, "SELECT * FROM usuarios")
+  //    or die (mysqli_error($conn));
 
+  // while ($row = mysqli_fetch_array($query)) {
+  //   echo
+  //    "<tr>
+  //     <td>{$row['id']}</td>
+  //     <td>{$row['nombre']}</td>
+  //    </tr>";
+    
 
+  // }
 
-$query = mysqli_query($conn, "SELECT * FROM usuarios")
-   or die (mysqli_error($conn));
+?>
+<div class="body-margen">
+  <h1>Bienvenido a AlquiCar!!</h1>
 
-while ($row = mysqli_fetch_array($query)) {
-  echo
-   "<tr>
-    <td>{$row['id']}</td>
-    <td>{$row['nombre']}</td>
-   </tr>";
-   
+</div>
 
-}
-
+<?php
+  require_once 'plantillas/footer.php';
 ?>
