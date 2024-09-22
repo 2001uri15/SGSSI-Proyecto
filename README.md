@@ -9,7 +9,7 @@ Este proyecto esta realizado por:
     <li>Aritz Blasco</li>
     <li>Diego Garcia</li>
     <li>Marcos Martín</li>
-    <li>Aitor Cortado</li>
+    <li>Aitor Cotano</li>
 </ul>
 
 # Datos del Proyecto
