@@ -1,34 +1,50 @@
-web:
-   image: web
-   environment:
-     - ALLOW_OVERRIDE=true
-   ports:
-     - "81:80"
-   links:
-     - db
-   volumes:
-     - ./app:/var/www/html/
+version: '3.8'  # Versión de Docker Compose.
 
-db:
-  image: mariadb:10.8.2
-  restart: always
-  volumes:
-    - ./mysql:/var/lib/mysql
-  environment:
-    MYSQL_ROOT_PASSWORD: root
-    MYSQL_USER: admin
-    MYSQL_PASSWORD: test
-    MYSQL_DATABASE: database
-  ports:
-    - "8889:3306"
+services:  # Definición de servicios.
 
-phpmyadmin:
-  image: phpmyadmin/phpmyadmin:latest
-  links:
-    - db
-  ports:
-    - 8890:80
-  environment:
-    MYSQL_USER: admin
-    MYSQL_PASSWORD: test
-    MYSQL_DATABASE: database
+  web:  # Servicio para la aplicación web.
+    image: web  # Imagen de Docker para el servicio web.
+    environment:
+      - ALLOW_OVERRIDE=true  # Configuración personalizada para el entorno web.
+    ports:
+      - "81:80"  # Mapea el puerto 81 del host al puerto 80 del contenedor.
+    links:
+      - mariadb  # Permite que web se comunique con MariaDB.
+    volumes:
+      - ./app:/var/www/html/  # Sincroniza el código fuente con el contenedor.
+    networks:
+      - my-network  # Red compartida con otros servicios.
+
+  mariadb:  # Servicio de la base de datos.
+    image: mariadb:latest  # Última versión de MariaDB.
+    container_name: mariadb  # Nombre del contenedor MariaDB.
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword  # Contraseña para root.
+      MYSQL_DATABASE: mydatabase  # Base de datos inicial.
+      MYSQL_USER: myuser  # Usuario de la base de datos.
+      MYSQL_PASSWORD: mypassword  # Contraseña del usuario.
+    ports:
+      - "3306:3306"  # Mapea el puerto de MariaDB.
+    volumes:
+      - mysql-data:/var/lib/mysql  # Persiste los datos de la base de datos.
+    networks:
+      - my-network  # Conexión a la red compartida.
+
+  phpmyadmin:  # Servicio de phpMyAdmin.
+    image: phpmyadmin/phpmyadmin  # Imagen oficial de phpMyAdmin.
+    container_name: phpmyadmin  # Nombre del contenedor phpMyAdmin.
+    environment:
+      PMA_HOST: mariadb  # Host de la base de datos.
+      MYSQL_ROOT_PASSWORD: rootpassword  # Contraseña de root.
+    ports:
+      - "8080:80"  # Mapea el puerto 8080 del host al puerto 80 del contenedor.
+    networks:
+      - my-network  # Red compartida con MariaDB.
+
+volumes:
+  mysql-data:  # Volumen para los datos de MariaDB.
+
+networks:
+  my-network:  # Red personalizada para los contenedores.
+    driver: bridge  # Driver de red (comunicación entre servicios).
+

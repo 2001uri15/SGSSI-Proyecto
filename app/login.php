@@ -1,5 +1,5 @@
 <?php
-    require_once 'plantillas/header.php'; // Incluimos el header
+require_once 'plantillas/header.php'; // Incluimos el header
 ?>
 <div class="body-margen">
     <div class="login">
@@ -18,5 +18,6 @@
     </div>
 </div>
 <?php
-  require_once 'plantillas/footer.php';
+require_once 'plantillas/footer.php';
 ?>
+
