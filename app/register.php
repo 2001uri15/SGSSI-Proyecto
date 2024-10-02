@@ -1,5 +1,5 @@
 <?php
-require_once 'plantillas/header.php'; // Incluimos el header
+    require_once 'plantillas/header.php'; // Incluimos el header
 ?>
 <div class="body-margen">
     <h1>Registro de Usuario</h1>
@@ -9,9 +9,12 @@ require_once 'plantillas/header.php'; // Incluimos el header
 
         <label class="login-label" for="apellido">Apellidos:</label>
         <input class="login-input" type="text" id="apellido" name="apellido" required placeholder="Ejemplo: Larrazabal">
-
+        
         <label class="login-label" for="usuario">Usuario:</label>
-        <input class="login-input" type="text" id="usuario" name="usuario" required placeholder="Ejemplo: asier123">
+        <input class="login-input" type="text" id="usuario" name="usuario" required placeholder="Ejemplo: asierlarra">
+        
+        <label class="login-label" for="password">Contraseña:</label>
+        <input class="login-input" type="password" id="password" name="password" required placeholder="Introduce una contraseña">
         
         <label class="login-label" for="dni">DNI:</label>
         <input class="login-input" type="text" id="dni" name="dni" required placeholder="Ejemplo: 12345678-Z">
@@ -20,13 +23,10 @@ require_once 'plantillas/header.php'; // Incluimos el header
         <input class="login-input" type="text" id="telefono" name="telefono" required placeholder="Ejemplo: 612345678">
         
         <label class="login-label" for="fDate">Fecha de Nacimiento:</label>
-        <input class="login-input" type="date" id="fDate" name="fDate" required>
+        <input class="login-input" type="date" id="fDate" name="fNacimiento" required>
         
         <label class="login-label" for="email">Email:</label>
         <input class="login-input" type="email" id="email" name="email" required placeholder="Ejemplo: ejemplo@servidor.extensión">
-
-        <label class="login-label" for="password">Contraseña:</label>
-        <input class="login-input" type="password" id="password" name="password" required placeholder="Crea una contraseña">
         
         <button type="submit" class="login-button" id="register_submit">Registrar</button>
         <br><br>
@@ -34,7 +34,8 @@ require_once 'plantillas/header.php'; // Incluimos el header
     </form>
 </div>
 
+<script src="validaciones.js"></script> <!-- Incluir el archivo de validaciones -->
 <?php
-require_once 'plantillas/footer.php';
+  require_once 'plantillas/footer.php';
 ?>
 

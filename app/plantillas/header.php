@@ -1,14 +1,16 @@
 <?php
 require_once 'con.php'; // Importamos la conexión a la bd
-session_start(); // Iniciar la sesión
+session_start(); // Iniciar sesión si no se ha iniciado aún
 ?>
 <html lang="es">
 <head>
-    <link rel="icon" href="">
+    <link rel="icon" href=""> <!-- Icono de la página web -->
     <meta name="description" content="Proyecto de la asignatura de SGSSI">
     <meta name="author" content="Asier Larrazabal, Ainhoa García, Aritz Blasco, Diego Garcia, Marcos Martín, Aitor Cortado ">
     <title>AlquiCar</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"> <!-- Iconos -->
+    <!-- Estilos -->
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/body.css">
 </head>
@@ -16,12 +18,17 @@ session_start(); // Iniciar la sesión
     <header>
         <nav class="navbar">
             <div class="logo">
-                <img src="https://i0.wp.com/blogmaldito.com/wp-content/uploads/2014/03/logo-coche.jpg?ssl=1" alt="Logo">
+                <a href="index.php">
+                    <img src="https://i0.wp.com/blogmaldito.com/wp-content/uploads/2014/03/logo-coche.jpg?ssl=1" alt="Logo">
+                </a>
             </div>
             <ul class="nav-links">
                 <li><a href="items.php"><i class="fas fa-car"></i> Coches</a></li>
                 <li><a href="precios.php"><i class="fas fa-dollar-sign"></i> Precios</a></li>
                 <li><a href="contacto.php"><i class="fas fa-envelope"></i> Contacto</a></li>
+                <?php if (isset($_SESSION['username'])): ?>
+                    <li><a href="modificar_datos.php"><i class="fas fa-user-edit"></i> Modificar Datos</a></li>
+                <?php endif; ?>
             </ul>
             <div class="profile">
                 <?php if (isset($_SESSION['username'])): ?>
