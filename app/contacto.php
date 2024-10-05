@@ -5,11 +5,12 @@ $tel = "+34 611223344";
 $address = "Paseo Rafael Moreno \"Pitxitxi\", n. 2/3. 48013 - Bilbao ";
 ?>
 <!--Iconos redes sociales.-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
 <!--Container principal con toda la información.-->
 <body>
-	<div class="container"> 
+	<div> 
 	    <h2>Contáctanos:</h2>
 	    <!--Información de contacto.-->
 	    <div class="contacto"> 
