@@ -39,7 +39,7 @@ require_once 'plantillas/header.php'; // Incluimos el header
         <?php
         // Conexión a la base de datos y operaciones CRUD
 
-        require 'conexion.php';
+        require 'con.php';
 
         // Función para eliminar un coche
         if (isset($_POST['delete'])) {
