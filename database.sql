@@ -61,3 +61,17 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- Crear la tabla coches
+CREATE TABLE IF NOT EXISTS coches (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    matricula VARCHAR(10) UNIQUE,
+    tipo_combustion VARCHAR(20),
+    modelo VARCHAR(50),
+    color VARCHAR(20),
+    marca VARCHAR(50)
+);
+
+-- Insertar datos en la tabla coches
+INSERT INTO coches (matricula, modelo, marca, tipo_combustion, color) VALUES 
+('4150-BBD', 'yaris', 'toyota', 'gasolina', 'gris');
