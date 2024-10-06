@@ -1,9 +1,9 @@
-version: '3.8'  # Versión de Docker Compose.
+version: "3.8"
 
 services:  # Definición de servicios.
 
   web:  # Servicio para la aplicación web.
-    image: web  # Imagen de Docker para el servicio web.
+    build: ./  # Construye la imagen desde un Dockerfile en el directorio actual.
     environment:
       - ALLOW_OVERRIDE=true  # Configuración personalizada para el entorno web.
     ports:
@@ -47,4 +47,5 @@ volumes:
 networks:
   my-network:  # Red personalizada para los contenedores.
     driver: bridge  # Driver de red (comunicación entre servicios).
+
 
