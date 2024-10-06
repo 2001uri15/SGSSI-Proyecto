@@ -34,9 +34,9 @@ $ docker-compose up
 ```
 5. Acceder a la página de **PHPMyAdmin**:
 ```
-En el navegador visitar http://localhost:8890/ y registrarse.
-     Usuario: admin
-     Contraseña: test
+En el navegador visitar http://localhost:8080/ y registrarse.
+     Usuario: myuser
+     Contraseña: mypassword
 ```
 6. Importar la base de datos **database.sql**:
 ```
