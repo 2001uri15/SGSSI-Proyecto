@@ -1,5 +1,5 @@
 function validateForm() {
-    // Validar nombre
+    // Recuperar variables
     const nombre = document.getElementById("nombre").value;
     const apellido = document.getElementById("apellido").value;
     const dni = document.getElementById("dni").value;
