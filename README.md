@@ -3,7 +3,7 @@ Proyecto de la asignatura de Sistemas de Gestión de Seguridad de Sistemas de In
 
 ## Participantes
 <ul dir="auto">
-    <li>Asier Larrazabal</li>
+    <li>Asier Larrazabal </li>
     <li>Ainhoa García</li>
     <li>Aritz Blasco</li>
     <li>Diego García</li>
