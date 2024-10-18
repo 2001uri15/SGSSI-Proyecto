@@ -2,9 +2,9 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: db
--- Tiempo de generación: 21-09-2024 a las 18:34:49
--- Versión del servidor: 10.8.2-MariaDB-1:10.8.2+maria~focal
+-- Servidor: mariadb
+-- Tiempo de generación: 02-10-2024 a las 23:00:45
+-- Versión del servidor: 11.5.2-MariaDB-ubu2404
 -- Versión de PHP: 8.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `database`
+-- Base de datos: `mydatabase`
 --
 
 -- --------------------------------------------------------
@@ -33,19 +33,21 @@ CREATE TABLE `usuarios` (
   `Apellido` varchar(255) NOT NULL,
   `usuario` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `dni` varchar(9) NOT NULL,
+  `dni` varchar(10) NOT NULL,
   `telefono` int(9) NOT NULL,
   `fNacimiento` date NOT NULL,
   `mail` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `Apellido`, `usuario`, `password`, `dni`, `telefono`, `fNacimiento`, `mail`) VALUES
-(1, 'mikel', '', '', '', '', 0, '0000-00-00', ''),
-(2, 'aitor', '', '', '', '', 0, '0000-00-00', '');
+(1, 'mikel', '', '', 'hola', '', 0, '0000-00-00', ''),
+(2, 'aitor', '', '', '', '', 0, '0000-00-00', ''),
+(3, 'test', 'test', 'test', '$2y$10$qGaMncF7p4zONiJdqaHnrebFznhlWSW6td02H6v/DvEdJIvTwK08u', '12345678-Z', 612345678, '1212-12-12', 'test@gmail.com'),
+(13, 'aritz', 'aritz', 'aritz', '$2y$10$6aWsnzgMKRdD0HTMbugK0.98BthBILp8b5.MFPQl0YC/PxhtXTG.2', '12345678-Z', 612345678, '1111-11-11', 'aritz@gmail.com');
 
 --
 -- Índices para tablas volcadas
@@ -56,22 +58,18 @@ INSERT INTO `usuarios` (`id`, `nombre`, `Apellido`, `usuario`, `password`, `dni`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
--- Crear la tabla coches
-CREATE TABLE IF NOT EXISTS coches (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    matricula VARCHAR(10) UNIQUE,
-    tipo_combustion VARCHAR(20),
-    modelo VARCHAR(50),
-    color VARCHAR(20),
-    marca VARCHAR(50)
-);
-
--- Insertar datos en la tabla coches
-INSERT INTO coches (matricula, modelo, marca, tipo_combustion, color) VALUES 
-('4150-BBD', 'yaris', 'toyota', 'gasolina', 'gris');
