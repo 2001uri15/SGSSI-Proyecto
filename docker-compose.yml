@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 version: "3.8"
+=======
+version: '3'  # Versión de Docker Compose
+>>>>>>> Stashed changes
 
 services:  # Definición de servicios.
 
@@ -24,7 +28,7 @@ services:  # Definición de servicios.
       MYSQL_USER: myuser  # Usuario de la base de datos.
       MYSQL_PASSWORD: mypassword  # Contraseña del usuario.
     ports:
-      - "3306:3306"  # Mapea el puerto de MariaDB.
+      - "3307:3306"  # Cambiado el puerto 3306 del host a 3307.
     volumes:
       - mysql-data:/var/lib/mysql  # Persiste los datos de la base de datos.
     networks:
@@ -47,5 +51,3 @@ volumes:
 networks:
   my-network:  # Red personalizada para los contenedores.
     driver: bridge  # Driver de red (comunicación entre servicios).
-
-

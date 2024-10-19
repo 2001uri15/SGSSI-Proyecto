@@ -1,11 +1,11 @@
 <?php
-    // Incluir conexión a la base de datos
-    $hostname = "mariadb"; // Nombre del host
-    $username = "myuser";   // Nombre de usuario
-    $password = "mypassword"; // Contraseña
-    $db = "mydatabase";     // Nombre de la base de datos
-  
+    $hostname = "mariadb";  // El nombre del servicio del contenedor en Docker
+    $username = "myuser";   // Usuario definido en Docker Compose
+    $password = "mypassword"; // Contraseña definida en Docker Compose
+    $db = "mydatabase";     // Base de datos definida en Docker Compose
+    
     $conn = mysqli_connect($hostname, $username, $password, $db);
-    if ($conn->connect_error) {
-        die("Database connection failed: " . $conn->connect_error);
+    if (!$conn) {
+        die("Database connection failed: " . mysqli_connect_error());
     }
+    
