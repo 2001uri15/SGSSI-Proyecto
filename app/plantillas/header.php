@@ -24,8 +24,6 @@ session_start(); // Iniciar sesión si no se ha iniciado aún
             </div>
             <ul class="nav-links">
                 <li><a href="items.php"><i class="fas fa-car"></i> Coches</a></li>
-                <li><a href="precios.php"><i class="fas fa-dollar-sign"></i> Precios</a></li>
-                <li><a href="contacto.php"><i class="fas fa-envelope"></i> Contacto</a></li>
                 <?php if (isset($_SESSION['username'])): ?>
                     <li><a href="modificar_datos.php"><i class="fas fa-user-edit"></i> Modificar Datos</a></li>
                 <?php endif; ?>
