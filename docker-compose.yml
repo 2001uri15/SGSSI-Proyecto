@@ -1,51 +1,53 @@
 
+version: '3'  # Versión de Docker Compose
 
-services:  # Definición de servicios.
+services:  # Definición de servicios
 
-  web:  # Servicio para la aplicación web.
-    build: ./  # Construye la imagen desde un Dockerfile en el directorio actual.
+
+  web:  # Servicio para la aplicación web
+    build: ./  # Construye la imagen desde un Dockerfile en el directorio actual
+
     environment:
-      - ALLOW_OVERRIDE=true  # Configuración personalizada para el entorno web.
+      - ALLOW_OVERRIDE=true  # Configuración personalizada para el entorno web
     ports:
-      - "81:80"  # Mapea el puerto 81 del host al puerto 80 del contenedor.
+      - "81:80"  # Mapea el puerto 81 del host al puerto 80 del contenedor
     links:
-      - mariadb  # Permite que web se comunique con MariaDB.
+      - mariadb  # Permite que web se comunique con MariaDB
     volumes:
-      - ./app:/var/www/html/  # Sincroniza el código fuente con el contenedor.
+      - ./app:/var/www/html/  # Sincroniza el código fuente con el contenedor
     networks:
-      - my-network  # Red compartida con otros servicios.
+      - my-network  # Red compartida con otros servicios
 
-  mariadb:  # Servicio de la base de datos.
-    image: mariadb:latest  # Última versión de MariaDB.
-    container_name: mariadb  # Nombre del contenedor MariaDB.
+  mariadb:  # Servicio de la base de datos
+    image: mariadb:latest  # Última versión de MariaDB
+    container_name: mariadb  # Nombre del contenedor MariaDB
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword  # Contraseña para root.
-      MYSQL_DATABASE: mydatabase  # Base de datos inicial.
-      MYSQL_USER: myuser  # Usuario de la base de datos.
-      MYSQL_PASSWORD: mypassword  # Contraseña del usuario.
+      - MYSQL_ROOT_PASSWORD=rootpassword  # Contraseña para root
+      - MYSQL_DATABASE=mydatabase  # Base de datos inicial
+      - MYSQL_USER=myuser  # Usuario de la base de datos
+      - MYSQL_PASSWORD=mypassword  # Contraseña del usuario
     ports:
-      - "3306:3306"  # Mapea el puerto de MariaDB.
+      - "3307:3306"  # Cambiado el puerto 3306 del host a 3307
     volumes:
-      - mysql-data:/var/lib/mysql  # Persiste los datos de la base de datos.
+      - mysql-data:/var/lib/mysql  # Persiste los datos de la base de datos
     networks:
-      - my-network  # Conexión a la red compartida.
+      - my-network  # Conexión a la red compartida
 
-  phpmyadmin:  # Servicio de phpMyAdmin.
-    image: phpmyadmin/phpmyadmin  # Imagen oficial de phpMyAdmin.
-    container_name: phpmyadmin  # Nombre del contenedor phpMyAdmin.
+  phpmyadmin:  # Servicio de phpMyAdmin
+    image: phpmyadmin/phpmyadmin  # Imagen oficial de phpMyAdmin
+    container_name: phpmyadmin  # Nombre del contenedor phpMyAdmin
     environment:
-      PMA_HOST: mariadb  # Host de la base de datos.
-      MYSQL_ROOT_PASSWORD: rootpassword  # Contraseña de root.
+      - PMA_HOST=mariadb  # Host de la base de datos
+      - MYSQL_ROOT_PASSWORD=rootpassword  # Contraseña de root
     ports:
-      - "8080:80"  # Mapea el puerto 8080 del host al puerto 80 del contenedor.
+      - "8080:80"  # Mapea el puerto 8080 del host al puerto 80 del contenedor
     networks:
-      - my-network  # Red compartida con MariaDB.
+      - my-network  # Red compartida con MariaDB
 
 volumes:
-  mysql-data:  # Volumen para los datos de MariaDB.
+  mysql-data:  # Volumen para los datos de MariaDB
 
 networks:
-  my-network:  # Red personalizada para los contenedores.
-    driver: bridge  # Driver de red (comunicación entre servicios).
-
+  my-network:  # Red personalizada para los contenedores
+    driver: bridge  # Driver de red (comunicación entre servicios)
 
