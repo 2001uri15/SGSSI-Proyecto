@@ -1,5 +1,6 @@
 <?php
     require_once 'plantillas/header.php'; // Incluimos el header
+    session_start(); // Asegúrate de iniciar la sesión para acceder al CSRF token
 ?>
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -9,6 +10,9 @@
     <div class="body-margen">
         <h1>Registro de Usuario</h1>
         <form id="register_form" class="login-form" action="process_register.php" method="post" onsubmit="return validateForm();">
+            <!-- Campo oculto con el token CSRF -->
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
             <label class="login-label" for="nombre">Nombre:</label>
             <input class="login-input" type="text" id="nombre" name="nombre" required placeholder="Ejemplo: Asier">
 

@@ -8,6 +8,11 @@ if (!isset($_SESSION['username'])) {
     exit;
 }
 
+// Verificar el token CSRF
+if ($_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die("Token CSRF inválido. La solicitud no es válida.");
+}
+
 // Obtener el nombre de usuario actual de la sesión
 $username = $_SESSION['username'];
 
@@ -36,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Ejecutar la consulta y manejar errores
     if ($stmt->execute()) {
         // Si la actualización es exitosa, redirigir a la página de modificar_datos
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Regenerar el token CSRF después de la actualización
         header('Location: modificar_datos.php?update=success');
         exit;
     } else {
@@ -44,3 +50,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+

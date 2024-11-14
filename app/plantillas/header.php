@@ -1,12 +1,10 @@
 <?php
-require_once 'con.php'; // Importamos la conexión a la bd
-session_start(); // Iniciar sesión si no se ha iniciado aún
-?>
+require_once 'con.php'; // Importamos la conexión a la bd ?>
 <html lang="es">
 <head>
     <link rel="icon" href=""> <!-- Icono de la página web -->
     <meta name="description" content="Proyecto de la asignatura de SGSSI">
-    <meta name="author" content="Asier Larrazabal, Ainhoa García, Aritz Blasco, Diego García, Marcos Martín, Aitor Cotano">
+    <meta name="author" content="Asier Larrazabal, Ainhoa García, Aritz Blasco, Diego Garcia, Marcos Martín, Aitor Cortado ">
     <title>AlquiCar</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"> <!-- Iconos -->

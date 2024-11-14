@@ -10,13 +10,11 @@
 
     ob_start(); // Inicia el buffer de salida
     if(isset($_POST['item_add_submit'])) {
-        // Recive y sanitiza los datos del formulario.
-        $matricula = preg_replace('/[^a-zA-Z0-9-]/' , '', (string)$_POST['matricula']);
-        // matricula tiene un regex distinto para permitir -.
-        $modelo = preg_replace('/[^a-zA-Z0-9]/' , '', (string)$_POST['modelo']);
-        $marca = preg_replace('/[^a-zA-Z0-9]/' , '', (string)$_POST['marca']);
-        $tipo_combustion = preg_replace('/[^a-zA-Z0-9]/' , '', (string)$_POST['tipo_combustion']);
-        $color = preg_replace('/[^a-zA-Z0-9]/' , '', (string)$_POST['color']);
+        $matricula = $_POST['matricula'];
+        $modelo = $_POST['modelo'];
+        $marca = $_POST['marca'];
+        $tipo_combustion = $_POST['tipo_combustion'];
+        $color = $_POST['color'];
         
 
         // Inserta los datos en la base de datos
@@ -33,4 +31,3 @@
         }
     }
     ob_end_flush(); // Envía el contenido del buffer al navegador
-?>

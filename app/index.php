@@ -1,17 +1,32 @@
 <?php
-require_once 'plantillas/header.php'; // Incluimos el header
+ini_set('session.cookie_secure', 1);          
+ini_set('session.cookie_httponly', 1);        
+ini_set('session.cookie_samesite', 'Strict'); 
 
-session_start(); // Iniciar sesión
+session_set_cookie_params([
+    'lifetime' => 0,
+    'path' => '/',
+    'domain' => '',
+    'secure' => true,
+    'httponly' => true,
+    'samesite' => 'Strict',
+]);
 
+session_start();
+
+// Generar y almacenar el token CSRF
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+require_once 'plantillas/header.php';
 ?>
-<head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-  <div class="body-margen">
-    <h1>Bienvenido a AlquiCar!!</h1>
-  </div>
-</body>
+
+
+<div class="body-margen">
+  <h1>Bienvenido a AlquiCar!!</h1>
+</div>
+
 <?php
 require_once 'plantillas/footer.php';
 ?>
