@@ -1,53 +1,65 @@
+version: '3'
 
-version: '3'  # Versión de Docker Compose
-
-services:  # Definición de servicios
-
-
-  web:  # Servicio para la aplicación web
-    build: ./  # Construye la imagen desde un Dockerfile en el directorio actual
-
+services:
+  web:
+    build: ./
     environment:
-      - ALLOW_OVERRIDE=true  # Configuración personalizada para el entorno web
-    ports:
-      - "81:80"  # Mapea el puerto 81 del host al puerto 80 del contenedor
+      - ALLOW_OVERRIDE=true
+    volumes:
+      - ./app:/var/www/html/
+      - ./config/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+    networks:
+      - my-network
     links:
-      - mariadb  # Permite que web se comunique con MariaDB
-    volumes:
-      - ./app:/var/www/html/  # Sincroniza el código fuente con el contenedor
-    networks:
-      - my-network  # Red compartida con otros servicios
+      - mariadb
 
-  mariadb:  # Servicio de la base de datos
-    image: mariadb:latest  # Última versión de MariaDB
-    container_name: mariadb  # Nombre del contenedor MariaDB
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb  # Nombre fijo para el contenedor MariaDB
     environment:
-      - MYSQL_ROOT_PASSWORD=rootpassword  # Contraseña para root
-      - MYSQL_DATABASE=mydatabase  # Base de datos inicial
-      - MYSQL_USER=myuser  # Usuario de la base de datos
-      - MYSQL_PASSWORD=mypassword  # Contraseña del usuario
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=mydatabase
+      - MYSQL_USER=myuser
+      - MYSQL_PASSWORD=mypassword
     ports:
-      - "3307:3306"  # Cambiado el puerto 3306 del host a 3307
+      - "3307:3306"
     volumes:
-      - mysql-data:/var/lib/mysql  # Persiste los datos de la base de datos
+      - mysql-data:/var/lib/mysql
     networks:
-      - my-network  # Conexión a la red compartida
+      - my-network
 
-  phpmyadmin:  # Servicio de phpMyAdmin
-    image: phpmyadmin/phpmyadmin  # Imagen oficial de phpMyAdmin
-    container_name: phpmyadmin  # Nombre del contenedor phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin  # Nombre fijo para el contenedor phpMyAdmin
     environment:
-      - PMA_HOST=mariadb  # Host de la base de datos
-      - MYSQL_ROOT_PASSWORD=rootpassword  # Contraseña de root
+      - PMA_HOST=mariadb
+      - MYSQL_ROOT_PASSWORD=rootpassword
     ports:
-      - "8080:80"  # Mapea el puerto 8080 del host al puerto 80 del contenedor
+      - "8080:80"
     networks:
-      - my-network  # Red compartida con MariaDB
+      - my-network
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "443:443"  # HTTPS
+      - "81:80"    # HTTP, redirigido a HTTPS
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/fullchain.cer:/etc/nginx/certs/fullchain.cer
+      - ./nginx/cert.key:/etc/nginx/certs/cert.key
+      
+      
+    depends_on:
+      - web
+    networks:
+      - my-network
 
 volumes:
-  mysql-data:  # Volumen para los datos de MariaDB
+  mysql-data:
 
 networks:
-  my-network:  # Red personalizada para los contenedores
-    driver: bridge  # Driver de red (comunicación entre servicios)
+  my-network:
+    driver: bridge
 
