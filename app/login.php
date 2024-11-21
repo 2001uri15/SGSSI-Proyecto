@@ -15,6 +15,26 @@ if (empty($_SESSION['csrf_token'])) {
 <div class="body-margen">
     <div class="login">
         <h1>Iniciar Sesión</h1>
+        <?php if (isset($_GET['error'])): ?>
+        <p style="color: red;">
+            <?php
+            switch ($_GET['error']) {
+                case 'captcha_failed':
+                    echo "Falló el CAPTCHA. Por favor, inténtalo de nuevo.";
+                    break;
+                case 'incorrect_password':
+                    echo "Contraseña incorrecta. Inténtalo nuevamente.";
+                    break;
+                case 'user_not_found':
+                    echo "Usuario no encontrado. Verifica tu nombre de usuario.";
+                    break;
+                default:
+                    echo "Ocurrió un error. Inténtalo nuevamente.";
+                    break;
+            }
+            ?>
+        </p>
+    <?php endif; ?>
         <form id="login_form" class="login-form" action="process_login.php" method="post">
             <label class="login-label" for="username">Nombre de Usuario:</label>
             <input class="login-input" type="text" id="username" name="username" required>
