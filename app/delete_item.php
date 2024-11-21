@@ -1,5 +1,11 @@
 <?php
+session_start();
 require_once 'con.php'; // Conexión a la base de datos
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php?error=not_logged_in");
+    exit();
+}
 
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']); // Asegúrate de validar y sanitizar la entrada

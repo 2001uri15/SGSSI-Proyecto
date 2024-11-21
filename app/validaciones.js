@@ -1,3 +1,4 @@
+const passwordPattern = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
 function validateForm() {
     // Recuperar variables
     const nombre = document.getElementById("nombre").value;
@@ -6,6 +7,7 @@ function validateForm() {
     const telefono = document.getElementById("telefono").value;
     const fNacimiento = document.getElementById("fDate").value;
     const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
     // Validar nombre
     if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)) {
@@ -43,9 +45,17 @@ function validateForm() {
         return false;
     }
 
+    // Validar contraseña
+    console.log("Contraseña ingresada:", password);
+    const passwordPattern = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+    if (!passwordPattern.test(password)) {
+        console.log("Contraseña inválida");
+        alert("La contraseña debe tener al menos 8 caracteres, incluir una letra mayúscula y un número.");
+        return false;
+    }
+    console.log("Contraseña válida");
     return true;
 }
-
 function validarDNI(dni) {
     // Comprobar el formato del DNI
     const dniRegex = /^\d{8}-[A-Z]$/; // Formato: 12345678-Z
@@ -66,7 +76,6 @@ function validarDNI(dni) {
         alert("La letra del DNI es incorrecta.");
         return false;
     }
-
     return true;
 }
 

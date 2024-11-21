@@ -1,5 +1,11 @@
 <?php
-require_once 'plantillas/header.php'; // Incluimos el header
+session_start();
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php?error=not_logged_in");
+    exit();
+}
+
 ?>
     <style>
         /* Estilos del formulario */

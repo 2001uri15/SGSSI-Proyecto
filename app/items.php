@@ -1,6 +1,6 @@
 <?php
-require_once 'plantillas/header.php'; // Incluimos el header
 session_start(); // Asegúrate de tener la sesión iniciada para acceder al token CSRF
+require_once 'plantillas/header.php'; // Incluimos el header
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <!-- Tabla para listar, editar y eliminar coches -->

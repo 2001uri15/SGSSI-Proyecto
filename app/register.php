@@ -1,6 +1,12 @@
 <?php
-    require_once 'plantillas/header.php'; // Incluimos el header
-    session_start(); // Asegúrate de iniciar la sesión para acceder al CSRF token
+session_start();
+require_once 'plantillas/header.php'; // Incluimos el header
+require_once 'csrf.php'; // Asegurarse de iniciar la sesión para manejar el token CSRF
+
+// Generar el token CSRF si no existe
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Generar un token único
+}
 ?>
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -9,9 +15,16 @@
 <body>
     <div class="body-margen">
         <h1>Registro de Usuario</h1>
+        <!-- Mostrar mensajes de error -->
+    <?php
+    if (isset($_SESSION['error_message'])) {
+        echo "<p style='color: red;'>" . $_SESSION['error_message'] . "</p>";
+        unset($_SESSION['error_message']); // Limpiar mensaje después de mostrarlo
+    }
+    ?>
         <form id="register_form" class="login-form" action="process_register.php" method="post" onsubmit="return validateForm();">
             <!-- Campo oculto con el token CSRF -->
-            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+            <input type="hidden" name="csrf_token" value="<?php echo get_csrf_token(); ?>">
 
             <label class="login-label" for="nombre">Nombre:</label>
             <input class="login-input" type="text" id="nombre" name="nombre" required placeholder="Ejemplo: Asier">
@@ -23,7 +36,7 @@
             <input class="login-input" type="text" id="usuario" name="usuario" required placeholder="Ejemplo: asierlarra">
             
             <label class="login-label" for="password">Contraseña:</label>
-            <input class="login-input" type="password" id="password" name="password" required placeholder="Introduce una contraseña">
+            <input class="login-input" type="password" id="password" name="password" required placeholder="Introduce una contraseña con al menos 8 dígitos, 1 mayúscula y 1 número">
             
             <label class="login-label" for="dni">DNI:</label>
             <input class="login-input" type="text" id="dni" name="dni" required placeholder="Ejemplo: 12345678-Z">
@@ -48,4 +61,3 @@
 <?php
   require_once 'plantillas/footer.php';
 ?>
-

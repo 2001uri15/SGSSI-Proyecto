@@ -1,5 +1,12 @@
 <?php
+session_start();
 require_once 'plantillas/header.php'; // Incluimos el header
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php?error=not_logged_in");
+    exit();
+}
+
 ?>
     <?php
         $id = $_GET['id'];

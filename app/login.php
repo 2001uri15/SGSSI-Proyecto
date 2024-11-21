@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'csrf.php';
 require_once 'plantillas/header.php'; // Incluimos el header
 
 // Genera el token Anti-CSRF y lo almacena en la sesión
@@ -24,7 +25,7 @@ if (empty($_SESSION['csrf_token'])) {
             <!-- Widget de reCAPTCHA -->
             <div class="g-recaptcha" data-sitekey="6LcM_n0qAAAAACOJMK1R2qcL1DqDL3835hT9pG7H"></div>
             <!-- Campo oculto para el token CSRF -->
-            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+            <input type="hidden" name="csrf_token" value="<?php echo get_csrf_token(); ?>">
             <button type="submit" class="login-button" id="login_submit">Iniciar Sesión</button>
             <br><br>
             <p>No tienes cuenta, <a href="register.php">crea una</a></p>
