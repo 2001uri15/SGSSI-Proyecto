@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $intentos_fallidos = $user['intentos_fallidos'] + 1;
             $bloqueado_hasta = null;
 
-            if ($intentos_fallidos >= 5) {
+            if ($intentos_fallidos >= 3) {
                 $bloqueado_hasta = (new DateTime())->add(new DateInterval('PT15M'))->format('Y-m-d H:i:s');
             }
 
