@@ -7,7 +7,8 @@ services:
       - ALLOW_OVERRIDE=true
     volumes:
       - ./app:/var/www/html/
-      - ./config/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+      - ./conf/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+      - ./logs:/var/log/  # Carpeta local para los logs
     networks:
       - my-network
     links:
