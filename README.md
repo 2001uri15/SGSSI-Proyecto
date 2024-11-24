@@ -27,19 +27,19 @@ Nombre: AlquiCar
 $ docker-compose up --build -d 
 ```
 5. Acceder a la página de **PHPMyAdmin**:
-```
+
 En el navegador visitar https://phpmyadmin.localhost:8080/ y accedemos con las credenciales de root:
      Usuario: root
      Contraseña: rootpassword
-```
+
 6. Importar la base de datos **database.sql.zip**:
-```
+
 Haz click en "database" y luego en "import", donde elegimos el archivo ya comprimido que podemos ver en el repositorio ya descargado.
-```
+
 7. Visitar la página web:
-```
+
 En el navegador visitar https://localhost/ o https://localhost/
-```
+
 
 Por último, para parar los servicios, en la misma terminal:
 ```sh
