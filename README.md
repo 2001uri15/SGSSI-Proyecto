@@ -16,6 +16,9 @@ Este proyecto está realizado por:
 Nombre: AlquiCar
 
 # Instrucciones para el despliegue del proyecto:
+Versión de docker utilizado: 27.3.1
+Versión de docker-compose utilizado: v2.29.7
+
 1. Descargamos el repositorio entrega_2
 
 2. Descomprimimos en el mismo directorio  (app) la carpeta PHPMailer
