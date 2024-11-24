@@ -16,38 +16,32 @@ Este proyecto está realizado por:
 Nombre: AlquiCar
 
 # Instrucciones para el despliegue del proyecto:
-1. Descargar el repositorio:
+1. Descargamos el repositorio entrega_2
+
+2. Descomprimimos en el mismo directorio  (app) la carpeta PHPMailer
+   
+3. Situarse en el directorio donde se encuentre el proyecto ( /SGSSI-Proyecto-entrega_2 )
+
+4. Construir los contenedores:
 ```sh
-$ git clone https://github.com/2001uri15/SGSSI-Proyecto.git
-```
-3. Situarse en el directorio donde se encuentre el proyecto:
-```sh
-$ cd ProyectoSGSSI
-```
-3. Construir la imagen web:
-```sh
-$ docker build -t="web" .
-```
-4. Desplegar los servicios:
-```sh
-$ docker-compose up
+$ docker-compose up --build -d 
 ```
 5. Acceder a la página de **PHPMyAdmin**:
 ```
-En el navegador visitar http://localhost:8080/ y registrarse.
-     Usuario: myuser
-     Contraseña: mypassword
+En el navegador visitar https://phpmyadmin.localhost:8080/ y accedemos con las credenciales de root:
+     Usuario: root
+     Contraseña: rootpassword
 ```
-6. Importar la base de datos **database.sql**:
+6. Importar la base de datos **database.sql.zip**:
 ```
-Haz click en "database" y luego en "import", donde elegimos el archivo ProyectoSGSSI/database.sql
+Haz click en "database" y luego en "import", donde elegimos el archivo ya comprimido que podemos ver en el repositorio ya descargado.
 ```
 7. Visitar la página web:
 ```
-En el navegador visitar http://localhost:81
+En el navegador visitar https://localhost/ o https://localhost/
 ```
 
-Por último, para parar los servicios, en otra terminal:
+Por último, para parar los servicios, en la misma terminal:
 ```sh
 $ docker-compose down
 ```
